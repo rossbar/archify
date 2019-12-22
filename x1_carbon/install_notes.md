@@ -21,7 +21,9 @@ Kernel DMA protection found in `Security -> Virtualization`
 # Post-install
 
 ## Graphics
- - Not installing x86-video-intel package as per KDE wiki recommendation
+ - ~~Not installing x86-video-intel package as per KDE wiki recommendation~~
+   * xf86-video-intel was necessary to get `xinit` working
 
 ```bash
 pacman -S mesa mesa-demos
+```
