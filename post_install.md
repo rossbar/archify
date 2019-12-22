@@ -67,3 +67,37 @@ systemctl enable wpa_supplicant@interface
 ```
 
 Reboot.
+
+## User management
+
+### Add a new user:
+
+```bash
+useradd -m -s /bin/bash <username>
+passwd <username>
+```
+
+Consider adding new user to additional gropus as necessary: see 
+[this list](https://wiki.archlinux.org/index.php/Users_and_groups#Group_list)
+for some common groups.
+
+### Configure sudo
+
+Using `visudo`, add the following to `/etc/sudoers`:
+
+```
+<username> ALL=(ALL) ALL
+```
+
+## Graphics drivers
+
+Note: recommend installing/updating graphics drivers before installing 
+Xorg/desktop environment.
+
+1. Figure out what your graphics controller is: `lspci | grep -e VGA -e 3D`
+
+Follow card- or system-specific instructions for installing drivers.
+
+### Install Xorg
+
+Recommend the `xorg` group, which 
