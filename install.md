@@ -4,23 +4,23 @@ This is basically the
 [arch install wiki](https://wiki.archlinux.org/index.php/Installation_guide)
 pared down and personalized.
 
-1. Verify boot mode
+### 1. Verify boot mode
 
 ```bash
 ls /sys/firmware/efi/efivars
 ```
 
-2. Connect to internet
+### 2. Connect to internet
 
 Wired connections (including dongles) will work OOB with `dhcpcd`.
 
-3. Update system clock
+### 3. Update system clock
 
 ```bash
 timedatectl set-ntp true
 ```
 
-4. Partition disk(s)
+### 4. Partition disk(s)
 
 Identify devices: `lsblk`
 
@@ -33,12 +33,12 @@ Partition with: `fdisk`
 | `/mnt/efi`  | `/dev/nvme0n1p1`| EFI system     | +512M|
 | `/mnt`      | `/dev/nvme0n1p2`| Linux          | rest |
 
-5. Format Partitions
+### 5. Format Partitions
 
 `mkfs.fat -F32 /dev/nvme0n1p1`
 `mkfs.ext4 /dev/nvme0n1p2`
 
-6. Set up swap file
+### 6. Set up swap file
 
 ```bash
 fallocate -l 1024m /swapfile
@@ -47,7 +47,7 @@ mkswap /swapfile
 swapon /swapfile
 ```
 
-7. Mount filesystems
+### 7. Mount filesystems
 
 ```bash
 mkdir -p /mnt/efi
@@ -57,18 +57,18 @@ mount /dev/nvme0n1p2 /mnt
 
 Make sure all partitions are mounted so they can be auto-gen'ed by `genfstab`.
 
-8. Select mirrors
+### 8. Select mirrors
 
 \#1: `http://mirrors.ocf.berkeley.edu/archlinux/$repo/os/$arch`
 \#2: `http://mirrors.cat.pdx.edu/archlinux/$repo/os/$arch`
 
-9. Install initial packages
+### 9. Install initial packages
 
 ```bash
 pacstrap /mnt base base-devel linux linux-firmware vim man-db man-pages texinfo dhcpcd wpa_supplicant iputils iw
 ```
 
-10. Generate `fstab`
+### 10. Generate `fstab`
 
 ```bash
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -82,13 +82,13 @@ echo "/swapfile none swap defaults 0 0" >> /mnt/etc/fstab
 arch-chroot /mnt
 ```
 
-1. Set time zone
+### 1. Set time zone
 ```bash
 ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 hwclock --systohc
 ```
 
-2. Localization
+### 2. Localization
 
 Uncomment out relevant lines from `/etc/locale.gen`
 
@@ -114,7 +114,7 @@ locale-gen
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 ```
 
-3. Network configuration
+### 3. Network configuration
 
 Choose a name for the computer.
 
@@ -129,9 +129,9 @@ Modify `/etc/hosts` with chosen name:
 127.0.1.1   myhostname.localdomain myhostname
 ```
 
-4. `passwd`
+### 4. `passwd`
 
-5. Install grub
+### 5. Install grub
 
 ```bash
 pacman -S grub
@@ -146,10 +146,10 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 ## Exit chroot
 
-1. `exit`
+### 1. `exit`
 
-2. `umount -R /mnt`
+### 2. `umount -R /mnt`
 
-3. `reboot`
+### 3. `reboot`
 
 ## *Cross Fingers*
