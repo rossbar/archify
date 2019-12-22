@@ -98,6 +98,13 @@ Xorg/desktop environment.
 
 Follow card- or system-specific instructions for installing drivers.
 
-### Install Xorg
+## Desktop environment
 
-Recommend the `xorg` group, which 
+### Xorg
+Recommend the `xorg` group: `pacman -S xorg xorg-xinit`
+
+### KDE
+
+```
+pacman -S plasma kde-applications
+```

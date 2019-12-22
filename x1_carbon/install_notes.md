@@ -17,3 +17,11 @@ Kernel DMA protection found in `Security -> Virtualization`
 
  - Ethernet through dongle
    * Run `dhcpd` after connected to get dhcp running on correct interface
+
+# Post-install
+
+## Graphics
+ - Not installing x86-video-intel package as per KDE wiki recommendation
+
+```bash
+pacman -S mesa mesa-demos

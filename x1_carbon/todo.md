@@ -9,3 +9,4 @@
  - [ ] Volume control
  - [ ] Test microphone
  - [ ] swap file
+ - [ ] [install Vulkan?](https://wiki.archlinux.org/index.php/Vulkan)
