@@ -108,3 +108,16 @@ Recommend the `xorg` group: `pacman -S xorg xorg-xinit`
 ```
 pacman -S plasma kde-applications
 ```
+
+`DiscoverNotifier` has caused crashes on my systems before. I never use the
+kde software discoverer, so remove this to improve system stability:
+
+```bash
+pacman -R discover
+```
+
+Also disable baloo file indexer (bugs here can cause it to peg a whole cpu):
+
+```bash
+balooctl disable
+```
