@@ -12,3 +12,8 @@ life, but this feature is not accessible in bios by default.
 The reason for this Kernel DMA protection is enabled by default in the BIOS.
 
 Kernel DMA protection found in `Security -> Virtualization`
+
+# Network in boot mode
+
+ - Ethernet through dongle
+   * Run `dhcpd` after connected to get dhcp running on correct interface

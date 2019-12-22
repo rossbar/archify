@@ -8,3 +8,4 @@
        optimization
  - [ ] Volume control
  - [ ] Test microphone
+ - [ ] swap file
