@@ -35,8 +35,10 @@ Partition with: `fdisk`
 
 ### 5. Format Partitions
 
-`mkfs.fat -F32 /dev/nvme0n1p1`
-`mkfs.ext4 /dev/nvme0n1p2`
+```
+mkfs.fat -F32 /dev/nvme0n1p1
+mkfs.ext4 /dev/nvme0n1p2
+```
 
 ### 6. Set up swap file
 
@@ -60,6 +62,7 @@ Make sure all partitions are mounted so they can be auto-gen'ed by `genfstab`.
 ### 8. Select mirrors
 
 \#1: `http://mirrors.ocf.berkeley.edu/archlinux/$repo/os/$arch`
+
 \#2: `http://mirrors.cat.pdx.edu/archlinux/$repo/os/$arch`
 
 ### 9. Install initial packages
@@ -146,10 +149,10 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 ## Exit chroot
 
-### 1. `exit`
+1. `exit`
 
-### 2. `umount -R /mnt`
+2. `umount -R /mnt`
 
-### 3. `reboot`
+3. `reboot`
 
 ## *Cross Fingers*
