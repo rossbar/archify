@@ -120,3 +120,16 @@ Also disable baloo file indexer (bugs here can cause it to peg a whole cpu):
 ```bash
 balooctl disable
 ```
+
+## Configure git, vim, bash
+
+Make sure everything is installed: `pacman -S git vim`
+
+Run the configuration scripts:
+
+```bash
+cd scripts/
+./configure_git.sh
+./configure_bash.sh
+./vim_upgrade.sh
+```
