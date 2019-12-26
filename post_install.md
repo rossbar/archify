@@ -23,11 +23,10 @@ Reboot to see if it worked.
 
 ### Wireless (e.g. laptops)
 
-`dhcpcd` in conjunction with `wpa_supplicant`. In my experience, it is best to
-configure these for the specific interface. Start with dhcp:
+`dhcpcd` in conjunction with `wpa_supplicant`.
 
 ```bash
-systemctl enable dhcpcd@<interface>
+systemctl enable dhcpcd
 ```
 
 #### Discover wireless networks
