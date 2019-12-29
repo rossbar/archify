@@ -133,3 +133,53 @@ cd scripts/
 ./configure_bash.sh
 ./vim_upgrade.sh
 ```
+
+## Python
+
+The default arch installation should have the bleeding-edge version of python.
+It is recommended that python is installed on the system parallel to the
+system python to avoid issues with building wheels when the minor rev. number
+is bumped (i.e. 3.7 -> 3.8).
+
+### Install "stable" python
+
+1. Download the source for the version you want.
+
+2. Make sure prereqs are installed: `pacman -S tk bzip2`
+
+3. Unzip the tar, configure and build
+   
+   ```bash
+   ./configure --enable-optimizations
+   make -j8
+   make test
+   sudo make install
+   ```
+
+   Note: As of 3.7.5, tests are automatically run sequentially with the `make`
+   command. Recommend killing the `make` process here and explicitly running
+   `make test`, which will run the test suite using all available cores.
+
+### Install pip
+
+Install pip with the *system* python. Rely on `virtualenv` to handle switching
+between different python versions.
+The following installs pip in `$HOME/.local/bin` by default. If this isn't
+what you want, check out the get-pip config options.
+
+```bash
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py --user
+# Add pip location to path
+echo 'export PATH=$HOME/.local/bin:$PATH' >> $HOME/.bashrc
+```
+
+### Install virtualenv
+
+```bash
+pip install --user virtualenv virtualenvwrapper
+# Configure
+echo 'mkdir -p $HOME/.virtualenvs' >> $HOME/.bashrc
+echo 'export WORKON_HOME=$HOME/.virtualenvs' >> $HOME/.bashrc
+echo 'source $HOME/.local/bin/virtualenvwrapper.sh' >> $HOME/.bashrc
+```
