@@ -183,3 +183,56 @@ echo 'mkdir -p $HOME/.virtualenvs' >> $HOME/.bashrc
 echo 'export WORKON_HOME=$HOME/.virtualenvs' >> $HOME/.bashrc
 echo 'source $HOME/.local/bin/virtualenvwrapper.sh' >> $HOME/.bashrc
 ```
+
+### Miniconda
+
+Prefer pip for dependency management as it is the standard python tool.
+However, there are situations where `pip` is insufficient for dependency
+management. For example, some projects have dependencies that exist outside the
+python ecosystem (e.g. compilers for `numba`; ruby/jekyll for `jupyterbook`).
+This gets hairy on arch as arch tends to have the absolute newest version of
+everything whereas the dependencies for these python packages tend not to be
+bleeding edge. Instead of gumming up the system with multiple library versions,
+you can use `conda` to manage these external dependencies.
+For example, if you need `jekyll` for `jupyterbook`, `conda` can handle the
+creation of a local environment with `ruby` installed, circumventing the need
+to install `ruby` on the system iteself.
+
+The following will install `conda` with (hopefully) the smallest possible 
+footprint and allow you to switch to use `conda` as a secondary environment
+manager **without blowing up the existing pip configuration**.
+
+```bash
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+bash miniconda.sh -b -f -p $HOME/miniconda
+export PATH=$HOME/miniconda/bin:$PATH
+conda config --set always_yes yes
+conda update conda
+```
+
+Then add the following to your shell environment:
+
+```bash
+alias use-conda='export PATH=$HOME/miniconda/bin:$PATH'
+```
+
+Close the current terminal session to get rid of the temporary `PATH` 
+specification.
+
+The system should now be configured to use `pip` and `virtualenv` by default,
+but allowing you to use `conda` instead in a given terminal session with
+`use-conda`.
+
+For example, to set up an environment with `jekyll`:
+
+```bash
+use-conda
+conda create -n jekyllenv
+# Enter the environment
+source activate jekyllenv
+conda install -c conda-forge rb-github-pages
+```
+
+**NOTE**: To enter environments without `conda` futzing with your `BASH_ENV`,
+use `source activate <envname>` instead of `conda activate <envname>`. 
+Exiting the environment is still done by `conda deactivate`.
