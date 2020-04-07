@@ -81,7 +81,7 @@ Make sure all partitions are mounted so they can be auto-gen'ed by `genfstab`.
 # Essentials
 pacstrap /mnt base linux linux-firmware
 # Install if internet is fast. Good idea to install internet related packages now
-pacstrap /mnt efibootmgr base-devel vim man-db man-pages texinfo dhcpcd wpa_supplicant iputils iw
+pacstrap /mnt base-devel vim man-db man-pages texinfo dhcpcd wpa_supplicant iputils iw
 ```
 
 ### 10. Generate `fstab`
@@ -150,7 +150,7 @@ Modify `/etc/hosts` with chosen name:
 ### 5. Install grub
 
 ```bash
-pacman -S grub
+pacman -S grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/mnt/efi --bootloader-id=GRUB
 ```
 
