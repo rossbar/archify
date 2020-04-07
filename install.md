@@ -65,6 +65,14 @@ Make sure all partitions are mounted so they can be auto-gen'ed by `genfstab`.
 
 \#2: `http://mirrors.cat.pdx.edu/archlinux/$repo/os/$arch`
 
+### 8b. Update keyring
+
+If you're using an old usb img, it might contain bad/expired keys. Fix with:
+
+```bash
+pacman -Sy archlinux-keyring
+```
+
 ### 9. Install initial packages
 
 ```bash
