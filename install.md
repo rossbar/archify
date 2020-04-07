@@ -4,6 +4,16 @@ This is basically the
 [arch install wiki](https://wiki.archlinux.org/index.php/Installation_guide)
 pared down and personalized.
 
+### Precheck:
+
+Make sure you have an up-to-date arch iso. If not, download 
+[the official image](https://www.archlinux.org/download/) and install on a
+USB:
+
+```bash
+# dd bs=4M if=path/to/archlinux.iso of=/dev/sdx status=progress oflag=sync
+```
+
 ### 1. Verify boot mode
 
 ```bash
@@ -64,14 +74,6 @@ Make sure all partitions are mounted so they can be auto-gen'ed by `genfstab`.
 \#1: `http://mirrors.ocf.berkeley.edu/archlinux/$repo/os/$arch`
 
 \#2: `http://mirrors.cat.pdx.edu/archlinux/$repo/os/$arch`
-
-### 8b. Update keyring
-
-If you're using an old usb img, it might contain bad/expired keys. Fix with:
-
-```bash
-pacman -Sy archlinux-keyring
-```
 
 ### 9. Install initial packages
 
