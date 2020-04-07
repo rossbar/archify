@@ -81,7 +81,7 @@ Make sure all partitions are mounted so they can be auto-gen'ed by `genfstab`.
 # Essentials
 pacstrap /mnt base linux linux-firmware
 # Install if internet is fast. Good idea to install internet related packages now
-pacstrap /mnt base-devel vim man-db man-pages texinfo dhcpcd wpa_supplicant iputils iw
+pacstrap /mnt efibootmgr base-devel vim man-db man-pages texinfo dhcpcd wpa_supplicant iputils iw
 ```
 
 ### 10. Generate `fstab`
