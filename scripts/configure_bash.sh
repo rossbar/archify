@@ -5,7 +5,9 @@ cat <<EOM >>$FILE
 #--- Aliases
 alias ipy='ipython --pylab'
 alias jpyn='jupyter notebook'
-# Make bash pretty
-source /usr/share/git/git-prompt.sh
+# Make prompt pretty
 source $HOME/.bash_color
+# For git prompt and shell completion
+source /usr/share/bash-completion/completions/git
+source /usr/share/git/git-prompt.sh
 EOM
