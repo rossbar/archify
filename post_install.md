@@ -236,3 +236,35 @@ conda install -c conda-forge rb-github-pages
 **NOTE**: To enter environments without `conda` futzing with your `BASH_ENV`,
 use `source activate <envname>` instead of `conda activate <envname>`. 
 Exiting the environment is still done by `conda deactivate`.
+
+## Configure `ssh`
+
+*After* ssh keys have been all set up, the following procedure can be used to
+configure `ssh-agent`/`ssh-add` to run automatically for each X session
+
+ 1. `pacman -S x11-ssh-askpass`
+
+ 1. add `ssh-agent` wrapper to `.xinitrc`:
+
+    ```bash
+    export SSH_ASKPASS=ssh-askpass
+    eval $(ssh-agent)
+    ...
+    exec startplasma-x11
+    ```
+
+ 2. Make sure `x11-ssh-askpass` is accessible on `PATH`:
+
+    ```bash
+    ln -sv /usr/lib/ssh/x11-ssh-askpass ~/.local/bin/ssh-askpass
+    ```
+
+ 3. Add `ssh-add` to kde autostart scripts
+    
+    ```bash
+    ln -sv /usr/bin/ssh-add $HOME/.config/autostart-scripts/ssh-add
+    ```
+
+Reboot. The next time an X session is launched, an ugly little prompt will ask
+for passwords to unlock the ssh keys. The key will then be available for the
+duration of the X session.
