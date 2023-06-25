@@ -16,7 +16,7 @@ set tabstop=4
 EOM
 # Upgrades!
 # vim-sensible
-git clone git://github.com/tpope/vim-sensible.git $HOME/.vim/bundle/vim-sensible
+git clone https://github.com/tpope/vim-sensible.git $HOME/.vim/bundle/vim-sensible
 # jedi-vim (python code completion)
 git clone --recursive https://github.com/davidhalter/jedi-vim.git $HOME/.vim/bundle/jedi-vim
-git clone https://github.com/plasticboy/vim-markdown.git
+git clone https://github.com/plasticboy/vim-markdown.git $HOME/.vim/bundle/vim-markdown
